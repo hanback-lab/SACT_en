@@ -3,30 +3,28 @@
 
 ## 기획
 
-이 절에서는 그동안 실습하였던 GATE에 대한 동작 내용을 응용하여 신호등 제어하는 예제를 진행하려고 한다. 
+In this chapter, we will proceed with an example of controlling traffic light by applying the operation of GATE that we have practiced so far.
 
 
 <img src="./pds/tra01.png" alt="tra01" style="width: 50%;"><br>
 
 <BR>
 
-장비에 응용 회로를 제어하도록 신호등이 구성되어 있다. 
-
-국내에서 주로 보이는 네거리 신호등의 형식이다. 
+The equipment is equipped with a traffic light to control the application circuit. Below is the type of traffic light most commonly seen at intersections in Korea.
 
 <img src="./pds/tra02.png" alt="traffic" style="width: 70%;"><br>
 
 
-동작에 대한 사항은 다음과 같다. 
+Details of the operation are as below.
 
 
-1. 신호등은 네거리에 있는 차도의 신호등과 횡단보도의 신호등으로 서로 연계되어 제어된다. 
+1. Traffic light is controlled by the traffic light on the road and the traffic light at the crosswalk at the intersection.
 
-2. 네거리의 차도와 횡단보도의 신호등은 위치에 따라 NORTH/EAST/SOUTH/WEST로 구별한다. 
+2. Traffic light on the road and traffic light at the crosswalk at the intersection are classified as NORTH/EAST/SOUTH/WEST depending on their location.
 
-3. 차도를 기준으로 신호등은 NORTH -> EAST -> SOUTH -> WEST -> NORTH의 시계 방향으로 상태가 회전하며 제어된다. 
+3. Traffic light on the road is controlled by rotating clockwise in the order of NORTH -> EAST -> SOUTH -> WEST -> NORTH.
 
-횡단보도를 기준으로는 EAST -> SOUTH -> WEST -> NORTH -> EAST의 시계 방향으로 상태가 회전하여 제어된다. 
+4. Traffic light on the crosswalk is controlled by rotating clockwise in the order of EAST -> SOUTH -> WEST -> NORTH -> EAST.
 
 <img src="./pds/tra06.png" alt="traffic" style="width: 80%;"><br>
 
@@ -41,23 +39,29 @@
 
 <BR>
 
-4. 각 상태의 변화는 10초를 기준으로 이루어진다. 
+5. Each state changes every 10 seconds.
 
-5. 각 차도의 신호등은 RED/YELLOW/LEFT/GREEN의 4개 신호가 제어된다. 
+
+6. Traffic light on each road is controlled by four signals, RED/YELLOW/LEFT/GREEN.
 
     <img src="./pds/tra03.png" alt="traffic" style="width: 70%;"><br>
     |RED|YELLOW|LEFT|GREEN|
     |-|-|-|-|
 
-6. 각 횡단보도의 신호등은 GREEN/RED의 2개의 신호가 제어되며, 각 방향의 양쪽에 있는 횡단보도의 신호등이 동시에 제어된다. 
+<br>
+
+7. Traffic light on each crosswalk is controlled by two signals, GREEN/RED, and traffic lights on each crosswalk on both sides in each direction are controlled simultaneously.
+
 
    <img src="./pds/tra03a.png" alt="traffic" style="width: 25%;"><br>
     |GREEN|RED|
     |-|-|
+    
+    <br>
 
-7. 차도의 기준에서 상태가 변하는 10초의 기준을 두고 다음과 같이 움직인다. 
-
-    RED는 상태가 현재의 방향이 아닐 때 ON된다. 
+8. It moves with 10-second standard for changing condition on the road as follows. 
+<br>
+    RED becomes ON when the state is not in the current direction.
 
    |SEC|RED|YELLOW|LEFT|GREEN|
    |:-:|:-:|:-:|:-:|:-:|
@@ -71,10 +75,12 @@
    |7|OFF|ON|OFF|OFF|
    |8|OFF|ON|OFF|OFF|
    |9|OFF|ON|OFF|OFF|
+<br>
 
-7. 횡단보도의 기준에서 상태가 변하는 10초의 기준을 두고 다음과 같이 움직인다. 
+9. It moves with 10-second standard for changing condition on the crosswalk as follows. 
+<br>
+    RED becomes ON when the state is not in the current direction.
 
-    RED는 상태가 현재의 방향이 아닐 때 ON된다. 
 
    |SEC|RED|GREEN|
    |:-:|:-:|:-:|
@@ -93,15 +99,15 @@
 <BR>
 
 ---
-## 하드웨어 정의
+## Hardware
 
-신호등을 제어하기 위해서 아래 그림과 같이 구별하여 정의한다. 
+Define and distinguish as below in order to control traffic lights.
 
 
 <img src="./pds/tra05.png" alt="traffic" style="width: 70%;"><br>
 
 
-CROSS는 차도의 신호등을 의미하고, WALK는 횡단보도의 신호등을 의미한다. . 
+CROSS refers to the traffic light on the road, and WALK refers to the traffic light on the sidewalk.
 
 |1|2|3|4|
 |:-:|:-:|:-:|:-:|
@@ -110,14 +116,14 @@ CROSS는 차도의 신호등을 의미하고, WALK는 횡단보도의 신호등�
 |NORTH_WALK|EAST_WALK|SOUTH_WALK|WEST_WALK|
 
 
-차도의 신호등은 아래와 같이 4개의 신호등으로 구성되어 있다. 
+Traffic lights on the road consists of 4 traffic lights as shown below.
 
 <img src="./pds/tra03.png" alt="traffic" style="width: 70%;"><br>
 
 |RED|YELLOW|LEFT|GREEN|
 |-|-|-|-|
 
-횡단보도의 신호등은 아래와 같이 2개의 신호등으로 구성되어 있다. 
+Traffic lights on the sidewalk consist of 2 signals as shown below.
 
 <img src="./pds/tra03a.png" alt="traffic" style="width: 25%;"><br>
 |GREEN|RED|
@@ -125,7 +131,7 @@ CROSS는 차도의 신호등을 의미하고, WALK는 횡단보도의 신호등�
 
 <BR>
 
-신호등의 각 위치 및 차도의 신호등일 때의 역할과 횡단보도의 신호등일 때의 역할에 따라 아래 표와 같이 이름을 정의한다. 
+Define the name as shown in the table below depending on the location and the role of each traffic light on the road and on the crosswalk.
 
 - NORTH
 <BR>
