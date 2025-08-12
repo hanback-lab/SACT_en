@@ -1,7 +1,7 @@
 
 # Combination Logic 
 
-앞에서 설명한 GATE를 조합한 논리 회로에 대한 설명이다. 
+A description of the logic circuit combining GATE described above is provided.
 
 
 ## [3-1. Half Adder](./3-01.HA.md)
