@@ -15,9 +15,10 @@ Hanback Electronics SACT
 
 ### 1. Clock Control Block
 
-- 반도체 응용 회로 설계에서 사용하기 위하여 0Hz에서 50MHz까지 16단계로 구성돈 클럭을 선택하여 사용.
+- Clock configured in 16 steps from 0 Hz to 50 MHz for semiconductor application circuit design is used.
 
 - 0Hz, 1Hz, 10Hz, 50Hz, 100Hz, 500Hz, 1kHz, 5kHz, 10kHz, 50kHz, 100kHz, 500kHz, 1MHz, 5MHz, 25MHz, 50MHz
+
 
 |No|Frequency||No|Frequency||No|Frequency||No|Frequency|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -48,8 +49,8 @@ Hanback Electronics SACT
 <img src="./pds/slide02.png" alt="sact05" style="width: 60%;">
 
 
+As the circuit diagram, default value of '0' is transmitted by the pull-down resistor, and the value of '1' is transmitted when the slide switch is pulled up.
 
-회로도에서 보는 것과 같이 Pull-down 저항에 의해 기본 '0'의 값이 전달되며, 슬라이드 스위치를 위로 올렸을 때 '1'의 값이 전달된다. 
 
 |HARDWARE|S7|S6|S5|S4|S3|S2|S1|S0|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -65,13 +66,13 @@ Hanback Electronics SACT
 <img src="./pds/psw02.png" alt="sact05" style="width: 60%;">
 
 
-회로도에서 보는 것과 같이 저항과 캐패시터, 슈미트 트리거 회로를 사용한 채터링 방지 회로가 내장되어 있다. 
+As the circuit diagram, it has a built-in anti-chattering circuit using resistor, capacitor, Schmitt trigger circuit.
 
-현재 회로에서는 스위치가 눌리지 않았을 때, 저항의 풀 업 저항에 의해 +3.3V 즉 ‘1’의 값이 가지게 된다. 따라서 74LCX14에 의해 반전되어 ‘0’의 값이 전달된다. 
+When the switch is not pressed, pull-up resistor of the resistor has a value of +3.3V, i.e. '1'. Therefore, it is inverted by 74LCX14 and  '0' is transmitted.
 
-반대로 스위치가 눌려 졌을 때는 신호선이 GND와 연결되어 스위치에서는 ‘0’의 값을 가지게 되고 74LCX14에 의해 ‘1’의 값이 전달된다. 
+When the switch is pressed, the signal line is connected to GND and switch has a value of '0' and '1' is transmitted by 74LCX14.
 
-74LCX14 IC는 슈미트 트리거 회로가 내장되어 있어, NOT 게이트의 역할을 하지만 버튼 스위치를 눌렀다 떼었을 때 발생하는 채터링 방지의 역할로 많이 사용된다.
+74LCX14 IC has a built-in Schmitt trigger circuit, which acts as NOT gate. It is often used to prevent “chattering” that occurs when a button switch is pressed and released.
 
 
 |HARDWARE|SW7|SW6|SW5|SW4|SW3|SW2|SW1|SW0|
@@ -86,9 +87,12 @@ Hanback Electronics SACT
 
 <img src="./pds/sca04.png" alt="sact05" style="width: 60%;"><br>
 
-회로에서 보는 것과 같이 3x4의 Keypad의 12개의 버튼을 입력 받아 사용할 수 있는 장치를 사용하고 있다. 여기에는 모두 풀-다운 저항을 사용하고 있어서 모든 데이터 라인에 기본적으로 ‘0’의 값을 가지고 있습니다.
 
-4비트 KEYPAD_R[3..0]에 [1 0 0 0]. [0 1 0 0], [0 0 1 0], [0 0 0 1]의 데이터를 전달하고, 그 때의 KEYPAD_C[2..0]에 어떤 데이터가 들어왔는지를 검출해 어떤 키가 눌렸는지를 확인할 수 있다. 
+ 
+As in the circuit, device that can receive input 12 buttons on 3x4 keypad to use is used. All are using pull-down resistors, so all data lines have a value of '0' by default.
+
+It is possible to determine which key was pressed by passing data of [1 0 0 0], [0 1 0 0], [0 0 1 0], [0 0 0 1] to 4-bit KEYPAD_R[3..0] and detecting that what data entered on KEYPAD_C[2..0].
+
 
 |HARDWARE|KEYPAD_R[3]|KEYPAD_R[2]|KEYPAD_R[1]|KEYPAD_R[0]|
 |:-:|:-:|:-:|:-:|:-:|
@@ -110,11 +114,12 @@ Hanback Electronics SACT
 
 <img src="./pds/buzzer.png" alt="sact05" style="width: 60%;"><br>
 
-압전 부저라고도 하며 1의 값이 들어왔을 때, -삑- 하는 소리가 나는 장치이다. 
 
-보통 경고의 의미로 사용하는 소리가 이것이다. 
+ 
+It is also called a piezoelectric buzzer makes a beeping sound when a value of 1 is input. 
 
-회로는 Buzzer의 동작에 대한 전류의 보강을 위하여 위와 같이 구성되어 있다. 
+This is usually used as a warning sound. The circuit is configured as above to implement the current for the buzzer operation.
+
 
 |HARDWARE|BUZZER|
 |:-:|:-:|
@@ -128,15 +133,14 @@ Hanback Electronics SACT
 
 <img src="./pds/piezo.png" alt="sact05" style="width: 60%;"><br>
 
-Multi Tone Buzzer(Piezo)는 앞의 Buzzer와 같은 회로를 사용한다. 
 
-Buzzer의 제어와는 다르게 별도의 회로 제어가 필요하다. 디지털 신호 1에 해당하는 입력 레벨의 음성 주파수대의 펄스 신호를 입력하면 해당 주파수 소리를 출력하게 된다. 
+Multi Tone Buzzer (Piezo) uses the same circuit as Buzzer. Unlike the control of a buzzer, separate circuit control is required. When a pulse signal of voice frequency band at the input level corresponding to digital signal 1 is input, sound of the corresponding frequency is output.
 
-이 장치에 1의 값만 입력함으로써 소리를 낼 수 있는 것이 아니라, 소리에 해당하는 주파수를 입력하여야 만 소리가 발생한다. 
+Sound is generated only when a frequency corresponding to the sound is input not by simply inputting a value of 1.
 
-다음은 이 장치를 제어하기 위한 소리 / 옥타브에 대한 주파수 이다. 
+Below are the frequencies for the sound/octave to control this device.
 
-|음 계	|2 옥타브 |3 옥타브|4 옥타브|
+|Scale	|2 Octaves |3 Octaves|4 Octaves|
 |:-:|:-:|:-:|:-:|
 |도|130.8128 Hz|261.6256 Hz|523.2511 Hz|
 |레|146.8324 Hz|293.6648 Hz|587.3295 Hz|
@@ -165,7 +169,8 @@ Buzzer의 제어와는 다르게 별도의 회로 제어가 필요하다. 디지
 
 <img src="./pds/led_sch.png" alt="sact05" style="width: 60%;">
 
-LED는 위의 회로도에서 보는 것과 같이 각각의 LED가 시리얼 저항에 연결되어 있다. 즉, ‘1’의 신호를 주어 LED를 켤 수 있다.
+
+Each LED is connected to serial resistor. That is, turn LED on by giving '1' signal.
 
 |HARDWARE|LED7|LED6|LED5|LED4|LED3|LED2|LED1|LED0|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -177,7 +182,9 @@ LED는 위의 회로도에서 보는 것과 같이 각각의 LED가 시리얼 �
 
 <img src="./pds/rgb02.png" alt="sact05" style="width: 60%;">
 
-회로는 일반 LED와 동일하며, 단지 하나의 Full Color LED 칩에 Red, Green, Blue의 색이 모두 들어 있기 때문에 일반 LED의 2핀이 아닌 6핀으로 구성되어 있다. 일반 LED와 마찬가지로 저항을 통해서 전류를 제어하도록 구성되어 있다. 
+
+
+The circuit is the same as regular LED. It has 6 pins instead of 2 pins of regular LED because it contains all the colors, red, green, blue in single full-color LED chip. It is configured to control the current through a resistor like regular LED.
 
 |HARDWARE|RGB_R3|RGB_G3|RGB_B3|RGB_R2|RGB_G2|RGB_B1|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -193,7 +200,11 @@ LED는 위의 회로도에서 보는 것과 같이 각각의 LED가 시리얼 �
 
 <img src="./pds/seg02.png" alt="sact05" style="width: 60%;">
 
-회로는 일반 LED와 동일하며, 단지 하나의 Full Color LED 칩에 Red, Green, Blue의 색이 모두 들어 있기 때문에 일반 LED의 2핀이 아닌 6핀으로 구성되어 있다. 일반 LED와 마찬가지로 저항을 통해서 전류를 제어하도록 구성되어 있다. 
+
+A 4-digit 7-segment display is implemented.
+
+Eight data lines are shared, and the display position is controlled by managing the common terminal of the segment.
+
 
 |HARDWARE|SEG_COM[7]|SEG_COM[6]|SEG_COM[5]|SEG_COM[4]|
 |:-:|:-:|:-:|:-:|:-:|
@@ -213,7 +224,7 @@ LED는 위의 회로도에서 보는 것과 같이 각각의 LED가 시리얼 �
 
 <img src="./pds/lcd02.png" alt="sact05" style="width: 60%;">
 
-Text LCD의 회로에서 Character의 3번 핀에 연결된 Pull-up 저항과 Pull-down 저항은 Text LCD에 표시되는 글자의 농도를 설정하기 위한 부분이고, 15번과 16번 핀은 Text LCD의 백 라이트 전원에 연결된 핀이다. 
+Pull-up resistor and Pull-down resistor connected to pin 3 of the Character are used to set the density of characters displayed on the Text LCD in the circuit of the Text LCD. Pin 15 and pin 16 are connected to the backlight power of Text LCD.
 
 |HARDWARE|LCD_RS|LCD_RW|LCD_E|
 |:-:|:-:|:-:|:-:|
@@ -236,7 +247,8 @@ Text LCD의 회로에서 Character의 3번 핀에 연결된 Pull-up 저항과 Pu
 
 <img src="./pds/step02.png" alt="sact05" style="width: 60%;">
 
-Step Motor는 일반 I/O로는 제어하기 힘들 정도로 전류를 소모해서, 별도의 IC를 통해서 연결되어 있다. 
+ 
+Step motor consumes so much current that it is difficult to control with general I/O, so it is connected through separate IC.
 
 |HARDWARE|STEP_A|STEP_B|STEP_AN|STEP_BN|
 |:-:|:-:|:-:|:-:|:-:|
@@ -252,11 +264,11 @@ Step Motor는 일반 I/O로는 제어하기 힘들 정도로 전류를 소모해
 
 <img src="./pds/adc02.png" alt="sact05" style="width: 60%;">
 
-0-5V 사이의 Analog IN 값을 Digital Data로 바꾸는 Analog to Digital Convertor이다. 
 
-장비에서 사용하는 Sampling Speed는 최대 1MHz이며, ADC_CLK의 입력을 받으면 AD In(Volume Resistor)의 0-5V 데이터가 ADC_D11-ADC_D0까지 12비트로 데이터가 출력된다. 
+It is an analog to digital converter that changes analog IN values between 0 and 5V into digital data.
 
-자세한 사항은 사용된 ADC의 DATASHEET를 참고하기 바란다. 
+The maximum sampling speed used in the equipment is 1MHz, and when ADC_CLK input is received, 0 - 5V data of AD In (Volume Resistor) is output as 12-bit data from ADC_D11 to ADC_D0.
+For details, please refer to DATASHEET of ADC used.
 
 |HARDWARE|ADC_CLK|ADC_OTR|ADC_D11|ADC_D10|ADC_D9|ADC_D8|ADC_D7|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -273,11 +285,10 @@ Step Motor는 일반 I/O로는 제어하기 힘들 정도로 전류를 소모해
 
 <img src="./pds/dac02.png" alt="sact05" style="width: 60%;">
 
-Digital 데이터를 0-5V의 Analog 출력으로 바꾸는 Digital to Analog Convertor이다. 
 
-장비에서 사용하는 Sampling Speed는 최대 500kHz이다. 
+It is Digital to Analog converter that changes digital data into analog output of 0 - 5V. The maximum sampling speed used in the equipment is 500 kHz.
 
-CS가 0일 때, WR의 신호에 의해서 DAC_D7-DAC_D0의 데이터가 Analog Data로 변경되어 출력되며, 이 출력은 Voltage Meter에 연결되어 출력의 크기가 LED로 나타난다. 
+When CS is 0, the data of DAC_D7 - DAC_D0 is converted to analog data by the signal of WR and output. this output is connected to voltage meter and the output siz is displayed on LED.
 
 |HARDWARE|DAC_CS|DAC_LDACN|DAC_WR|
 |:-:|:-:|:-:|:-:|
@@ -296,7 +307,9 @@ CS가 0일 때, WR의 신호에 의해서 DAC_D7-DAC_D0의 데이터가 Analog D
 
 <img src="./pds/vm01.png" alt="sact05" style="width: 30%;"><br>
 
-앞의 DAC의 출력 결과를 확인할 수 있는 장치로, 0-5V의 Analog 출력을 LED 10개로 출력되도록 구성되어 있다. 
+
+Device that can check the output result of the DAC, and is configured to output 0-5V analog output to 10 LEDs.
+
 
 ### 7. Application Block
 
@@ -304,10 +317,13 @@ CS가 0일 때, WR의 신호에 의해서 DAC_D7-DAC_D0의 데이터가 Analog D
 
 <img src="./pds/SACT10.png" alt="sact10" style="width: 60%;">
 
-- 32개의 LED를 이용해 네거리의 신호등을 표현하여 제어되고 있다. 
-- 4개의 거리로 구성되어 있다. N(North), E(East), S(South), W(West) 
-- 각 거리는 차도의 LED 4개와 횡단보도의 LED 2개(2쌍)로 구성되어 있다. 
-- 총 24개의 I/O 제어
+- Taffic lights at the intersection are expressed and controlled using 32 LEDs.
+
+- It consists of four streets, N (North), E (East), S (South), and W (West).
+
+- Each street consists of four LEDs on the road and two LEDs (two pairs) on the crosswalk.
+
+- A total of 24 I/O controls
 
 <br>
     
@@ -333,9 +349,11 @@ CS가 0일 때, WR의 신호에 의해서 DAC_D7-DAC_D0의 데이터가 Analog D
 
 <img src="./pds/SACT11.png" alt="sact11" style="width: 60%;">
         
-- 20개의 LED를 이용해 컵에 물이 차는 모양 표시
-- 7줄로 구성되어 있으며, 바닥의 그림과 같이 LED가 위치하여, 컵의 모양 제어됨.
-- 7개의 I/O 제어
+- Express the cup filling with water using 20 LEDs
+
+- It consists of 7 lines, there are LEDs on the bottom and controlling the shape of the cup.
+
+- 7 I/O controls
 
 |PORT NAME|VEND_D6|VEND_D5|VEND_D4|VEND_D3|
 |:-:|:-:|:-:|:-:|:-:|
@@ -348,21 +366,23 @@ CS가 0일 때, WR의 신호에 의해서 DAC_D7-DAC_D0의 데이터가 Analog D
 
 ## Assistance Block
 
-- x86 계열의 PC와 7인치 모니터, Camera로 구성됨.
-        
-- 7인치 TFT LCD를 통해 수업 내용 표시		
+- It consists of x86 series PC and 7-inch monitor and camera.
 
+- Display through 7-inch TFT LCD.
+
+ 
 <img src="./pds/SACT12.png" alt="sact12" style="width: 60%;">
 
 
-- Programmable Logic Device와 Assistance Block 연계 동작을 위한 Camera 데모
+- Camera Demo for Programmable Logic Device and Assistance Block converged operation	
+
 
 <img src="./pds/SACT13.png" alt="sact13" style="width: 60%;">
 
 
-TFT LCD에 표시된 아이콘 중 CAMERA 아이콘을 누르면, 아래의 핀 설정에 따라 CAMERA에서 받은 이미지를 변환하여 TFT LCD에 표시된다. 
+When pressing CAMERA icon among the icons displayed on TFT LCD, the image received from CAMERA is converted and displayed on TFT LCD according to the pin settings below.
 
-Programmable Logic Device에서 제어 신호를 보내어 Assitance Block의 PC가 이를 받아 Camera의 이미지를 처리하는 방식으로 구성되어 있다. 
+It is configured that a control signal is sent from the Programmable Logic Device, and PC of the Assistance Block receives it and processes the camera image.
 
 <br>
 
@@ -373,10 +393,7 @@ Programmable Logic Device에서 제어 신호를 보내어 Assitance Block의 PC
 |1|0||RGB Mode|
 |1|1||Canny Mode|
 
-
 <br>
-
-위 신호를 주기 위한 핀 번호는 아래와 같다.
 
 |PORT NAME|PC1|PC0|
 |:-:|:-:|:-:|
