@@ -1,11 +1,12 @@
 # WATCH
 ---
 
-## 기획
+## Planning
 
-분과 초 가 표시되는 디지털 시계를 설계해 보자. 
+Let's design a digital clock/watch that displays minute and second. 
 
-시계는 일반적으로 아래 그림과 같이 시와 분이 표시된다. 
+Clock/Watch usually displays hour and minute as shown below.
+ 
 
 <br>
 
@@ -13,20 +14,22 @@
 
 <br>
 
-장비에서 동작시키기 위해서 좀 더 빠르게 변화할 수 있는 분과 초가 표시되는 시계를 만들어 보자.
+Let's create a clock that displays minute and second to operate faster on equipment. 
 
-시계의 설계는 아래 그림과 같이 COUNTER 블록과 SEGMENT DISPLAY블록으로 나누어 설계된다. 
-
+Clock design is divided into COUNTER block and SEGMENT DISPLAY block as shown below.
+ 
 <img src="./pds/wta02.png" alt="scmp4_t-cmp4_" style="width: 80%;">
 <BR><BR>
 
-COUNTER 블록은 1초 주기의 CLOCK을 받아서 초와 분을 카운트한다. 
+COUNTER block receives CLOCK of 1 second cycle and count seconds and minutes.
 
-SEGMENT DISPLAY 블록은 COUNTER 블록에서 출력하는 초와 분의 BCD 값을 입력 받아, 7-SEGMENT ARRAY에 표시하는 블록이다. 
+
+SEGMENT DISPLAY block receives BCD value of second and minute that COUNTER block outputs and displays them on 7-SEGMENT ARRAY.
+
 
 <br><br>
 
-장비에서 사용하는 장치는 다음과 같다. 
+Devices used in the equipment are as below.
 
 |PORT NAME|CLK|
 |:-:|:-:|
