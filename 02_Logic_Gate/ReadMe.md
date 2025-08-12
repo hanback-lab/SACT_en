@@ -1,7 +1,7 @@
 
 # Logic Gate 
 
-디지털 논리 회로의 기초인 Gate에 대해 설명한다. 
+Gate, which is the basis of digital logic circuits, is described.
 
 
 ## [2-1. NOT Gate](./2-01.NOT.md)
