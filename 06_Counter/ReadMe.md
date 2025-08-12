@@ -4,15 +4,14 @@
 
 ## 이론
 
-일반적으로 카운터는 입력 펄스에 따라 미리 정해진 순서대로 상태 전이가 진행되는 레지스터를 말한다. 
+In general, counter is a register of which the state transits in predetermined order according to input pulse.
 
-0, 1, 2, 3, 4, 5, … 처럼 숫자를 차례대로 세는 것을 카운터라 한다. 
+Counting numbers such as 0, 1, 2, 3, 4, 5, … in turn is called counter.
 
-여기에서 0-9의 숫자가 반복되면 10진 카운터라고 부른다. 
+When the numbers 0 to 9 are repeated, it is called a decimal counter, which is crucial for system design. It is used to generate the frequency for the system and also to indicate the flow of data.
 
-이 카운터는 시스템을 설계하는데 중요하다. 시스템에 필요한 주파수를 생성하는 부분에서도 이 카운터가 사용되고, 데이터의 흐름을 나타내는 곳에서도 카운터가 사용된다.  
+This chapter explains the basic concept of counter.
 
-이 절에서는 이 카운터에 대한 기본 개념을 설명하고 있다.  
 
 
 ## [6-1. Asynchorous Counter](./6-1.ASYNC_CNT.md)
