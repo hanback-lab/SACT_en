@@ -1,7 +1,7 @@
 
 # Sequencial Logic
 
- Flip-Flop과 State Machine에 대한 회로이다. 
+  This is a circuit for flip-flop and state machine.
 
 
 ## [4-1. Latch](./4-1.LATCH.md)
