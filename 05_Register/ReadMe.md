@@ -1,9 +1,9 @@
 
 # Register
 
-레지스터는 2진 데이터의 저장이 가능한 셀들의 집합이다. 즉 기억소자인 플립플롭으로 구성된 데이터 저장 장소라 할 수 있다. 
+Register is a set of storing binary data. It can be said as data storage consisting of flip-flops, which are memory elements.
 
-이 장에서는 레지스터의 여러 가지 형태에 데이터가 저장되는 방법과 저장된 데이터가 레지스터에서 출력되는 방법에 대한 설명을 하고 있다. 
+This chapter explains how data is stored in various types of registers and how stored data is output from register.
 
 
 ## [5-1. PIPO](./5-1.PIPO.md)
