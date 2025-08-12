@@ -4,33 +4,37 @@
 ## 이론
 
 
-앞에서 실습하였던 Flip-Flop이 1개의 bit를 저장하는 메모리라 할 수 있다. 
+Flip-Flop practiced earlier can be said memory that stores one bit. 
 
-이러한 플립플롭을 여러 개 결합한 것을 레지스터라고 한다. 
+Combining several flip-flops is called register. 
 
-따라서 n비트의 레지스터가 있다면 n비트의 데이터를 저장할 수 있다. 
+Therefore, if there is n-bit register, it can store n-bit data.
 
 <img src="./pds/mem01.png" alt="p03" style="width: 70%;">
 
 <br>
 
-어떤 프로세서의 CPU를 보면 그 안에 여러 개의 레지스터가 들어 있다. 
+There are several registers in CPU of processor. 
 
-이러한 레지스터는 CPU가 현재 처리하고 있는 데이터와 명령어를 저장한다. 
+The register stores the data and command that the CPU is currently processing. 
 
-하지만, 이러한 레지스터는 최대 몇 비트의 정보만 저장할 수 있다. 
+However, the registers can only store a few bits of information.
 
-처리하는 데이터의 양이 많다는 것은 CPU가 빠른 속도를 내는 MB 또는 GB단위의 더 큰 용량의 저장 공간이 필요하다는 것을 말한다. 또, CPU가 작업하는 동안 필요한 프로그램이나 OS 프로세서를 저장할 수도 있다. 
+Big data to process means CPU needs more storage space, typically in megabytes or gigabytes, to keep up with its speed. 
 
-CPU가 작업 중에 자주 접근하는 메모리를 주기억장치라 한다. 
+It can also store programs or operating system process while CPU is working.
 
-이 주기억장치는 크게 RAM과 ROM의 두 가지 유형이 있다. 
+<BR>
 
-RAM은 Random Access Memory의 약자이고, ROM은 Read-only Memory의 약자이다. 
+Memory that CPU frequently accesses while working is called main memory.
 
-ROM은 말그대로 읽을 수만 있는 메모리이다. 메모리의 내용을 읽을 수 있지만 쓸수는 없다. 
+There are two main types of main memory, RAM and ROM.RAM stands for Random Access Memory, and ROM stands for Read-only Memory. 
 
-그에 반해 RAM은 데이터의 읽기와 쓰기 작업을 모두 할 수 있다. 
+ROM is read-only memory. 
+
+You can read the contents of the memory but cannot write. 
+
+Meanwhile, RAM allows both reading and writing data.
 
 
 ## [7-1. RAM](./7-1.RAM.md)
