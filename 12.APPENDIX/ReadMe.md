@@ -1,4 +1,4 @@
-# 반도체 응용 회로 실습 장비 SACT
+# Semiconductor Application Circuit Training Equipment SACT
 
 Hanback Electronics SACT
 
