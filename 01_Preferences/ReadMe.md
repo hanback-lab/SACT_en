@@ -11,5 +11,5 @@ This is a chapter that explains the introduction of equipment and how to downloa
 
 ## [1-2. Tool Install](./1-2.Tool%20Install.md)
 
-## [1-3. Gettiung Started](./1-3.Getting%20Started.md)
+## [1-3. Getting Started](./1-3.Getting%20Started.md)
 
